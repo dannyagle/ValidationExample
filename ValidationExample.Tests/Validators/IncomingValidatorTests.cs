@@ -70,6 +70,31 @@ namespace ValidationExample.Tests.Validators
             }
         }
 
+        [TestMethod]
+        public void Incoming_WhenHasValues_NoExceptions()
+        {
+            // setup
+            var validator = new IncomingValidator();
+            var model = new Incoming
+            {
+                Workflow = "Good",
+                FirstName = "Joe",
+                LastName = "Coolio",
+                Nickname = "Joey",
+                BirthDate = "01/31/1980"
+            };
+
+            // test
+            try
+            {
+                validator.ValidateAndThrow(model);
+            }
+            // assert
+            catch (ValidationException ex)
+            {
+                Assert.Fail();
+            }
+        }
 
     }
 }
